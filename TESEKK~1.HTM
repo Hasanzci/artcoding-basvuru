@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teşekkürler! • ArtCoding</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .thanks-wrap {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px; text-align: center;
+    }
+    .thanks-card {
+      max-width: 560px; background: #fff; padding: 50px 40px;
+      border-radius: 28px; box-shadow: 0 24px 60px rgba(91,42,134,0.18);
+      position: relative; overflow: hidden;
+    }
+    .thanks-card::before {
+      content: ""; position: absolute; top:0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(135deg, #5B2A86, #7C4DFF, #22D3EE);
+    }
+    .thanks-card .mascot { width: 180px; margin: 0 auto 16px; animation: float 4s ease-in-out infinite; }
+    .thanks-card h1 { font-size: 2rem; margin-bottom: 12px; }
+    .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+    .confetti span {
+      position: absolute; top: -20px; width: 12px; height: 12px;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(105vh) rotate(720deg); opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob blob-1"></span><span class="blob blob-2"></span><span class="blob blob-3"></span>
+  </div>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+  <div class="thanks-wrap">
+    <div class="thanks-card">
+      <img src="assets/maskot.svg" alt="" class="mascot" />
+      <h1>Başvurun bize ulaştı! 🎉</h1>
+      <p id="thanksMsg">
+        Eğitim koordinatörümüz <strong>24 saat içinde</strong> sizinle iletişime geçecek.
+        Bu arada e-posta kutunuzu kontrol etmeyi unutmayın!
+      </p>
+      <p style="font-size:0.9rem; color:#5A4F6E; margin-top:18px;">
+        📱 Acil bir konu olursa bize Instagram'dan
+        <a href="https://instagram.com/artcoding" target="_blank">@artcoding</a> üzerinden de ulaşabilirsiniz.
+      </p>
+      <a href="index.html" class="btn btn-primary" style="margin-top: 24px;">Anasayfaya dön</a>
+    </div>
+  </div>
+
+  <script>
+    // URL parametrelerini özet mesajda göster
+    const p = new URLSearchParams(location.search);
+    const ad = p.get("ad"), kurs = p.get("kurs"), deneme = p.get("deneme");
+    if (ad && kurs) {
+      const t = document.getElementById("thanksMsg");
+      t.innerHTML = `<strong>${ad}</strong> için <strong>${kurs}</strong> kursuna başvurun alındı.${deneme === "Evet" ? " <strong>Ücretsiz deneme dersi</strong> talebiniz not edildi. " : " "} Eğitim koordinatörümüz <strong>24 saat içinde</strong> sizinle iletişime geçecek.`;
+    }
+    // Konfeti
+    const c = document.getElementById("confetti");
+    const colors = ["#7C4DFF","#22D3EE","#E91E63","#FFC107","#26A69A"];
+    for (let i = 0; i < 80; i++) {
+      const s = document.createElement("span");
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.background = colors[Math.floor(Math.random() * colors.length)];
+      s.style.animationDuration = (3 + Math.random() * 3) + "s";
+      s.style.animationDelay = Math.random() * 1.5 + "s";
+      s.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+      s.style.transform = `rotate(${Math.random()*360}deg)`;
+      c.appendChild(s);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yönetici Paneli • ArtCoding</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="admin-page">
+
+  <!-- ========== Login ========== -->
+  <section id="loginScreen" class="login-screen">
+    <form id="loginForm" class="login-card" autocomplete="off">
+      <img src="assets/logo.svg" alt="ArtCoding" class="brand-logo" />
+      <h2>Yönetici Girişi</h2>
+      <p>Başvuruları görmek için giriş yapın.</p>
+      <div class="field">
+        <label for="loginUser">Kullanıcı adı</label>
+        <input type="text" id="loginUser" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="loginPass">Şifre</label>
+        <input type="password" id="loginPass" required autocomplete="current-password" />
+      </div>
+      <p class="login-error" id="loginError"></p>
+      <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+      <p style="margin-top:18px; font-size:0.85rem;"><a href="index.html">← Anasayfaya dön</a></p>
+    </form>
+  </section>
+
+  <!-- ========== Dashboard ========== -->
+  <div id="dashboard" class="admin-shell" hidden>
+    <header class="admin-topbar">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.svg" alt="" class="brand-logo" />
+        <span class="brand-text"><span class="brand-art">Art</span><span class="brand-coding">Coding</span> · Yönetici</span>
+      </a>
+      <div class="topbar-actions">
+        <button class="btn btn-ghost" id="refreshBtn" title="Yenile">↻ Yenile</button>
+        <button class="btn btn-ghost" id="exportBtn" title="CSV indir">⬇ CSV</button>
+        <button class="btn btn-primary" id="logoutBtn">Çıkış</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <h2 style="margin-bottom: 22px;">Haziran 2026 Başvuruları</h2>
+
+      <div class="dashboard-stats" id="statsBar">
+        <div class="stat-card"><span class="stat-num" id="statTotal">—</span><span class="stat-label">Toplam başvuru</span></div>
+        <div class="stat-card" style="border-left-color:#22D3EE;"><span class="stat-num" id="statTrial">—</span><span class="stat-label">Deneme dersi isteyen</span></div>
+        <div class="stat-card" style="border-left-color:#E91E63;"><span class="stat-num" id="statToday">—</span><span class="stat-label">Bugünkü başvuru</span></div>
+        <div class="stat-card" style="border-left-color:#FFC107;"><span class="stat-num" id="statTopCourse">—</span><span class="stat-label">En popüler kurs</span></div>
+      </div>
+
+      <div class="toolbar">
+        <input type="search" id="searchBox" placeholder="🔍 İsim, e-posta veya telefon ara..." />
+        <select id="kursFilter">
+          <option value="">Tüm kurslar</option>
+        </select>
+        <select id="trialFilter">
+          <option value="">Hepsi</option>
+          <option value="Evet">Sadece deneme dersi isteyenler</option>
+          <option value="Hayır">Deneme dersi istemeyenler</option>
+        </select>
+        <span class="count" id="countLabel"></span>
+      </div>
+
+      <div id="tableContainer">
+        <div class="empty-state">
+          <img src="assets/maskot.svg" alt="" />
+          <p>Başvurular yükleniyor...</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========== Detay modal ========== -->
+  <div class="modal" id="detailModal" hidden>
+    <div class="modal-card" style="max-width: 640px;">
+      <button class="modal-close" id="detailClose">×</button>
+      <h3 id="detailTitle">Başvuru Detayı</h3>
+      <div id="detailBody"></div>
+    </div>
+  </div>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/admin.js"></script>
+</body>
+</html>
