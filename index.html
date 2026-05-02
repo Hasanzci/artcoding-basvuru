@@ -38,7 +38,7 @@
     </div>
   </header>
 
-  <section id="hero" class="hero">
+  <section id="hero" class="hero reveal">
     <div class="container hero-grid">
       <div class="hero-text">
         <span class="badge">
@@ -72,78 +72,140 @@
 
   <section id="kurslar" class="section">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="kicker">Programımız</span>
         <h2>Haziran döneminde açılan kurslar</h2>
         <p>Her yaş ve seviyeye uygun, eğlenceli ve proje tabanlı dersler.</p>
       </div>
+
+      <div class="course-filters reveal">
+        <button class="filter-btn active" data-filter="all">Tümü</button>
+        <button class="filter-btn" data-filter="kodlama">Kodlama</button>
+        <button class="filter-btn" data-filter="tasarim">Tasarım</button>
+        <button class="filter-btn" data-filter="sinav">Sınava Yönelik</button>
+      </div>
+
       <div class="course-grid">
 
-        <article class="course-card">
-          <div class="course-icon" style="--c1:#7C4DFF;--c2:#22D3EE;">🐱</div>
-          <h3>Scratch ile Kodlama</h3>
-          <p class="age">7 – 11 yaş</p>
-          <p>Çocuklar blok tabanlı kodlama ile kendi oyunlarını ve animasyonlarını yapar.</p>
-          <ul>
-            <li>Mantık kurma &amp; problem çözme</li>
-            <li>Hikâye anlatımı &amp; oyun tasarımı</li>
-            <li>Haftalık 1 ders × 60 dk</li>
-          </ul>
+        <article class="course-card reveal" data-category="kodlama"
+          data-title="Scratch ile Kodlama" 
+          data-age="7 – 11 yaş" 
+          data-image="assets/course_scratch.png" 
+          data-desc="Çocuklar blok tabanlı kodlama ile kendi oyunlarını ve animasyonlarını yapar. Hem analitik düşünme yeteneklerini geliştirir hem de eğlenirler. Algoritma mantığını öğrenmenin en keyifli yolu!"
+          data-curriculum="Hafta 1: Scratch Arayüzü ve Karakter Hareketi|Hafta 2: Döngüler ve Şartlı İfadeler|Hafta 3: Değişkenler ve Puan Sistemi|Hafta 4: Kendi Oyunumuzu Tasarlıyoruz (Final Projesi)"
+          data-value="Scratch ile Kodlama">
+          <div class="course-image">
+            <img src="assets/course_scratch.png" alt="Scratch Kodlama" loading="lazy">
+          </div>
+          <div class="course-content">
+            <div class="course-icon" style="--c1:#7C4DFF;--c2:#22D3EE;">🐱</div>
+            <h3>Scratch ile Kodlama</h3>
+            <p class="age">7 – 11 yaş</p>
+            <p>Çocuklar blok tabanlı kodlama ile kendi oyunlarını ve animasyonlarını yapar.</p>
+            <button class="btn btn-ghost btn-pill btn-details">Detayları İncele</button>
+          </div>
         </article>
 
-        <article class="course-card">
-          <div class="course-icon" style="--c1:#FFC107;--c2:#FF7043;">🐍</div>
-          <h3>Python Başlangıç</h3>
-          <p class="age">12 – 16 yaş</p>
-          <p>Gerçek bir programlama dili ile küçük projeler, oyunlar ve mini uygulamalar.</p>
-          <ul>
-            <li>Değişkenler, döngüler, fonksiyonlar</li>
-            <li>Pygame ile oyun geliştirme</li>
-            <li>Haftalık 1 ders × 90 dk</li>
-          </ul>
+        <article class="course-card reveal" data-category="kodlama"
+          data-title="Python Başlangıç" 
+          data-age="12 – 16 yaş" 
+          data-image="assets/course_python.png" 
+          data-desc="Dünyanın en popüler yazılım dili Python ile tanışın. Algoritma mantığını öğrenerek mini uygulamalar ve oyunlar geliştirecekler. Geleceğin yazılımcıları için en iyi başlangıç."
+          data-curriculum="Hafta 1: Python'a Giriş, Veri Tipleri|Hafta 2: Kontrol Yapıları (If-Else) ve Döngüler|Hafta 3: Fonksiyonlar ve Modüller|Hafta 4: Pygame ile 2D Oyun Geliştirme Temelleri"
+          data-value="Python Başlangıç">
+          <div class="course-image">
+            <img src="assets/course_python.png" alt="Python Başlangıç" loading="lazy">
+          </div>
+          <div class="course-content">
+            <div class="course-icon" style="--c1:#FFC107;--c2:#FF7043;">🐍</div>
+            <h3>Python Başlangıç</h3>
+            <p class="age">12 – 16 yaş</p>
+            <p>Gerçek bir programlama dili ile küçük projeler, oyunlar ve mini uygulamalar.</p>
+            <button class="btn btn-ghost btn-pill btn-details">Detayları İncele</button>
+          </div>
         </article>
 
-        <article class="course-card">
-          <div class="course-icon" style="--c1:#E91E63;--c2:#7C4DFF;">🎨</div>
-          <h3>Dijital Çizim &amp; Sanat Atolyesi</h3>
-          <p class="age">9 – 16 yaş</p>
-          <p>Tablet ve dijital araçlarla karakter, illüstrasyon ve dijital boyama.</p>
-          <ul>
-            <li>Renk teorisi &amp; kompozisyon</li>
-            <li>Karakter ve sahne tasarımı</li>
-            <li>Haftalık 1 ders × 60 dk</li>
-          </ul>
+        <article class="course-card reveal" data-category="tasarim"
+          data-title="Dijital Çizim & Sanat Atölyesi" 
+          data-age="9 – 16 yaş" 
+          data-image="assets/course_art.png" 
+          data-desc="Tablet ve dijital araçlarla yaratıcılığınızı ekrana taşıyın. Karakter tasarımı, konsept sanat ve dijital boyama teknikleri ile hayalinizdeki dünyaları çizin."
+          data-curriculum="Hafta 1: Çizim Programlarına Giriş ve Fırça Kullanımı|Hafta 2: Renk Teorisi, Işık ve Gölge|Hafta 3: Karakter Tasarım Temelleri ve İfadeler|Hafta 4: Tamamlanmış Dijital İllüstrasyon Çıktısı"
+          data-value="Dijital Çizim & Sanat">
+          <div class="course-image">
+            <img src="assets/course_art.png" alt="Dijital Çizim" loading="lazy">
+          </div>
+          <div class="course-content">
+            <div class="course-icon" style="--c1:#E91E63;--c2:#7C4DFF;">🎨</div>
+            <h3>Dijital Çizim &amp; Sanat</h3>
+            <p class="age">9 – 16 yaş</p>
+            <p>Tablet ve dijital araçlarla karakter, illüstrasyon ve dijital boyama.</p>
+            <button class="btn btn-ghost btn-pill btn-details">Detayları İncele</button>
+          </div>
         </article>
 
-        <article class="course-card">
-          <div class="course-icon" style="--c1:#26A69A;--c2:#FFC107;">🔌</div>
-          <h3>Arduino &amp; Raspberry Pi</h3>
-          <p class="age">11 – 17 yaş</p>
-          <p>Donanımı kodla buluşturup gerçek dünya projeleri tasarlayın.</p>
-          <ul>
-            <li>Sensörler, LED'ler, motorlar</li>
-            <li>IoT &amp; akıllı cihaz projeleri</li>
-            <li>Haftalık 1 ders × 90 dk</li>
-          </ul>
+        <article class="course-card reveal" data-category="kodlama"
+          data-title="Arduino & Raspberry Pi" 
+          data-age="11 – 17 yaş" 
+          data-image="assets/course_arduino.png" 
+          data-desc="Elektronik donanım ve yazılımın harika uyumu. Kendi robotik projelerinizi, akıllı ev sistemlerinizi yapmayı öğrenin. Gerçek dünya ile etkileşen kodlar yazın."
+          data-curriculum="Hafta 1: Temel Elektronik ve Devre Elemanları|Hafta 2: Arduino'ya Giriş, İlk Led Uygulaması|Hafta 3: Sensör Okuma ve Motor Kontrolü|Hafta 4: Akıllı Çöp Kutusu veya Radar Projesi"
+          data-value="Arduino & Raspberry Pi">
+          <div class="course-image">
+            <img src="assets/course_arduino.png" alt="Arduino ve Raspberry Pi" loading="lazy">
+          </div>
+          <div class="course-content">
+            <div class="course-icon" style="--c1:#26A69A;--c2:#FFC107;">🔌</div>
+            <h3>Arduino &amp; Raspberry Pi</h3>
+            <p class="age">11 – 17 yaş</p>
+            <p>Donanımı kodla buluşturup gerçek dünya projeleri tasarlayın.</p>
+            <button class="btn btn-ghost btn-pill btn-details">Detayları İncele</button>
+          </div>
         </article>
 
-        <article class="course-card course-card--wide">
-          <div class="course-icon" style="--c1:#22D3EE;--c2:#5B2A86;">📐</div>
-          <h3>LGS Matematik</h3>
-          <p class="age">7. – 8. sınıf</p>
-          <p>LGS'ye yönelik konu anlatımı, soru çözümü ve deneme analizleri.</p>
-          <ul>
-            <li>Konu özetleri &amp; mini testler</li>
-            <li>Haftalık deneme + analiz</li>
-            <li>Haftalık 2 ders × 60 dk</li>
-          </ul>
+        <article class="course-card reveal" data-category="sinav"
+          data-title="LGS Matematik" 
+          data-age="7. – 8. sınıf" 
+          data-image="assets/course_math.png" 
+          data-desc="LGS'de matematiği korkulu rüya olmaktan çıkarıyoruz. Yeni nesil sorulara özel çözüm taktikleri, mantık muhakeme becerileri ve konu pekiştirmeleri."
+          data-curriculum="Hafta 1: Çarpanlar, Katlar ve Üslü İfadeler|Hafta 2: Kareköklü İfadeler ve Veri Analizi|Hafta 3: Olasılık ve Cebirsel İfadeler|Hafta 4: Genel LGS Denemesi ve Detaylı Analiz"
+          data-value="LGS Matematik">
+          <div class="course-image">
+            <img src="assets/course_math.png" alt="LGS Matematik" loading="lazy">
+          </div>
+          <div class="course-content">
+            <div class="course-icon" style="--c1:#22D3EE;--c2:#5B2A86;">📐</div>
+            <h3>LGS Matematik</h3>
+            <p class="age">7. – 8. sınıf</p>
+            <p>LGS'ye yönelik konu anlatımı, soru çözümü ve deneme analizleri.</p>
+            <button class="btn btn-ghost btn-pill btn-details">Detayları İncele</button>
+          </div>
+        </article>
+
+        <article class="course-card reveal" data-category="kodlama"
+          data-title="Minecraft Education ile Python" 
+          data-age="7 – 13 yaş" 
+          data-image="assets/course_minecraft.png" 
+          data-desc="Çocukların en sevdiği oyun olan Minecraft dünyasında kodlama öğrenin! Python ile blokları yönetin, kendi dünyalarınızı kodlayarak inşa edin ve eğlenirken algoritma mantığını kavrayın."
+          data-curriculum="Hafta 1: Minecraft Edu'ya Giriş ve Temel Komutlar|Hafta 2: Python ile Ajanı (Agent) Hareket Ettirme|Hafta 3: Döngülerle Otomatik Yapılar İnşa Etme|Hafta 4: Şartlı İfadeler ve Kendi Mini Oyunumuzu Yapma"
+          data-value="Minecraft Education">
+          <div class="course-image">
+            <img src="assets/course_minecraft.png" alt="Minecraft Education" loading="lazy">
+          </div>
+          <div class="course-content">
+            <div class="course-icon" style="--c1:#4CAF50;--c2:#8BC34A;">🟩</div>
+            <h3>Minecraft ile Kodlama</h3>
+            <p class="age">7 – 13 yaş</p>
+            <p>Minecraft dünyasında Python öğrenin, kendi yapılarınızı kodlayarak inşa edin.</p>
+            <button class="btn btn-ghost btn-pill btn-details">Detayları İncele</button>
+          </div>
         </article>
 
       </div>
     </div>
   </section>
 
-  <section id="neden-biz" class="section section-alt">
+  <section id="neden-biz" class="section section-alt reveal">
     <div class="container">
       <div class="section-head">
         <span class="kicker">Neden ArtCoding?</span>
@@ -158,7 +220,7 @@
     </div>
   </section>
 
-  <section id="basvuru" class="section">
+  <section id="basvuru" class="section reveal">
     <div class="container form-wrap">
       <div class="form-side">
         <span class="kicker">Başvuru Formu</span>
@@ -219,6 +281,7 @@
             <option value="">— Kurs seçiniz —</option>
             <option value="Scratch ile Kodlama">Scratch ile Kodlama (7-11 yaş)</option>
             <option value="Python Başlangıç">Python Başlangıç (12-16 yaş)</option>
+            <option value="Minecraft Education">Minecraft ile Kodlama (7-13 yaş)</option>
             <option value="Dijital Çizim & Sanat">Dijital Çizim &amp; Sanat (9-16 yaş)</option>
             <option value="Arduino & Raspberry Pi">Arduino &amp; Raspberry Pi (11-17 yaş)</option>
             <option value="LGS Matematik">LGS Matematik (7-8. sınıf)</option>
@@ -301,7 +364,7 @@
     </div>
   </section>
 
-  <section id="sss" class="section section-alt">
+  <section id="sss" class="section section-alt reveal">
     <div class="container">
       <div class="section-head">
         <span class="kicker">SSS</span>
@@ -350,6 +413,32 @@
       </ul>
       <p>amaçlarıyla kullanılır. Verileriniz üçüncü taraflarla paylaşılmaz. Talebiniz halinde verileriniz silinir veya güncellenir.</p>
       <button class="btn btn-primary" id="kvkkOk">Anladım</button>
+    </div>
+  </div>
+
+  <div class="modal" id="courseModal" hidden>
+    <div class="modal-card modal-large">
+      <button class="modal-close" id="courseClose" aria-label="Kapat">×</button>
+      <div class="course-modal-grid">
+        <div class="course-modal-img">
+          <img src="" alt="" id="modalImg" loading="lazy" />
+        </div>
+        <div class="course-modal-info">
+          <span class="badge" id="modalAge"></span>
+          <h3 id="modalTitle"></h3>
+          <p id="modalDesc" class="lead"></p>
+          
+          <div class="curriculum-box">
+            <h4>Örnek Müfredat</h4>
+            <ul id="modalCurriculum"></ul>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn btn-primary" id="modalApplyBtn">Hemen Başvur</button>
+            <span class="course-price-hint">Ücretsiz Deneme Dersi Fırsatıyla</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -24,6 +24,93 @@
     kvkkModal.addEventListener("click", e => { if (e.target === kvkkModal) kvkkModal.hidden = true; });
   }
 
+  // ---------- Scroll Reveal ----------
+  const revealElements = document.querySelectorAll(".reveal");
+  if (revealElements.length > 0 && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => observer.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add("active")); // fallback
+  }
+
+  // ---------- Course Filters ----------
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const courseCards = document.querySelectorAll(".course-card");
+  if (filterBtns.length > 0 && courseCards.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const filter = btn.dataset.filter;
+        courseCards.forEach(card => {
+          if (filter === "all" || card.dataset.category === filter) {
+            card.style.display = "flex";
+            setTimeout(() => card.classList.add("active"), 10);
+          } else {
+            card.style.display = "none";
+            card.classList.remove("active");
+          }
+        });
+      });
+    });
+  }
+
+  // ---------- Course Modal ----------
+  const courseModal = document.getElementById("courseModal");
+  const courseClose = document.getElementById("courseClose");
+  if (courseModal) {
+    courseClose.addEventListener("click", () => courseModal.hidden = true);
+    courseModal.addEventListener("click", e => { if (e.target === courseModal) courseModal.hidden = true; });
+
+    document.querySelectorAll(".btn-details").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const card = e.target.closest(".course-card");
+        if (!card) return;
+
+        const title = card.dataset.title;
+        const age = card.dataset.age;
+        const image = card.dataset.image;
+        const desc = card.dataset.desc;
+        const curriculum = card.dataset.curriculum;
+        const value = card.dataset.value;
+
+        document.getElementById("modalImg").src = image;
+        document.getElementById("modalImg").alt = title;
+        document.getElementById("modalAge").textContent = age;
+        document.getElementById("modalTitle").textContent = title;
+        document.getElementById("modalDesc").textContent = desc;
+
+        const ul = document.getElementById("modalCurriculum");
+        ul.innerHTML = "";
+        if (curriculum) {
+          curriculum.split("|").forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            ul.appendChild(li);
+          });
+        }
+
+        const applyBtn = document.getElementById("modalApplyBtn");
+        if (applyBtn) {
+          applyBtn.onclick = () => {
+            courseModal.hidden = true;
+            document.getElementById("kurs").value = value;
+            document.getElementById("basvuru").scrollIntoView({ behavior: "smooth" });
+          };
+        }
+
+        courseModal.hidden = false;
+      });
+    });
+  }
+
   // ---------- Form ----------
   const form = document.getElementById("basvuruForm");
   if (!form) return;
