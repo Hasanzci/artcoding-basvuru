@@ -68,8 +68,8 @@ p { margin: 0 0 1em; color: var(--c-muted); }
 }
 .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-family: var(--font-h); }
-.brand-logo { width: 44px; height: 44px; }
-.brand-text { font-size: 1.25rem; }
+.brand-logo { width: 70px; height: 70px; }
+.brand-text { font-size: 1.6rem; }
 .brand-art { color: var(--c-cyan); }
 .brand-coding { color: var(--c-purple); }
 
