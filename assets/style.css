@@ -20,8 +20,8 @@
   --radius-lg: 28px;
   --grad-1: linear-gradient(135deg, #5B2A86 0%, #7C4DFF 50%, #22D3EE 100%);
   --grad-2: linear-gradient(135deg, #E91E63 0%, #7C4DFF 100%);
-  --font-h: 'Fredoka', 'Inter', system-ui, sans-serif;
-  --font-b: 'Inter', system-ui, sans-serif;
+  --font-h: 'Baloo 2', system-ui, sans-serif;
+  --font-b: 'Quicksand', system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
