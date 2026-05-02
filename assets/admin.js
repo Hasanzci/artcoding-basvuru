@@ -73,9 +73,19 @@
   });
 
   var logoutBtn = document.getElementById("logoutBtn");
-  if (logoutBtn) logoutBtn.addEventListener("click", function () {
-    clearToken(); location.reload();
-  });
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function (e) {
+      e.preventDefault(); // Butonun olası varsayılan davranışlarını engeller
+      clearToken();       // Oturum verisini (token) siler
+      showLogin();        // Sayfayı yenilemeden doğrudan giriş ekranına döndürür
+      
+      // Güvenlik: Önceki kullanıcının verilerini ve formunu arkaplanda temizler
+      allApps = []; 
+      document.getElementById("tableContainer").innerHTML = '';
+      document.getElementById("loginUser").value = "";
+      document.getElementById("loginPass").value = "";
+    });
+  }
 
   var allApps = [];
 
