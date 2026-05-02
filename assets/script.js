@@ -2,7 +2,6 @@
 (function () {
   "use strict";
 
-  // ---------- Mobil menü ----------
   const navToggle = document.getElementById("navToggle");
   const header = document.querySelector(".site-header");
   if (navToggle && header) {
@@ -12,7 +11,6 @@
     );
   }
 
-  // ---------- KVKK modal ----------
   const kvkkLink = document.getElementById("kvkkLink");
   const kvkkModal = document.getElementById("kvkkModal");
   const kvkkClose = document.getElementById("kvkkClose");
@@ -24,16 +22,14 @@
     kvkkModal.addEventListener("click", e => { if (e.target === kvkkModal) kvkkModal.hidden = true; });
   }
 
-  // ---------- Form ----------
   const form = document.getElementById("basvuruForm");
   if (!form) return;
 
   const note = document.getElementById("formNote");
   const submitBtn = document.getElementById("submitBtn");
 
-  // Telefon maskeleme
   const tel = document.getElementById("telefon");
-  tel && tel.addEventListener("input", () => {
+  if (tel) tel.addEventListener("input", () => {
     let v = tel.value.replace(/\D/g, "");
     if (v.startsWith("90")) v = v.substring(2);
     if (v.startsWith("0")) v = v.substring(1);
@@ -65,7 +61,7 @@
   }
   form.addEventListener("input", e => e.target.classList.remove("invalid"));
 
-  form.addEventListener("submit", async e => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
     note.className = "form-note"; note.textContent = "";
 
@@ -73,7 +69,7 @@
       note.classList.add("error");
       note.textContent = "Lütfen kırmızıyla işaretlenen alanları kontrol edin.";
       const firstInvalid = form.querySelector(".invalid");
-      firstInvalid && firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (firstInvalid) firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
 
@@ -101,32 +97,28 @@
     submitBtn.disabled = true;
 
     const url = (window.ARTCODING_CONFIG && window.ARTCODING_CONFIG.APPS_SCRIPT_URL) || "";
-    if (!url || url.includes("BURAYA")) {
+    if (!url || url.indexOf("BURAYA") >= 0) {
       submitBtn.classList.remove("is-loading"); submitBtn.disabled = false;
       note.classList.add("error");
-      note.textContent = "Form henüz aktif değil. (Yönetici: assets/config.js içine Apps Script URL'i ekleyin.)";
+      note.textContent = "Form henüz aktif değil.";
       return;
     }
 
-    try {
-      // Apps Script doPost CORS dert etmesin diye text/plain ile yolluyoruz
-      await fetch(url, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ action: "submit", data })
-      });
-
-      // Form gönderildikten sonra teşekkür sayfasına yönlendir
+    fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "submit", data: data })
+    }).then(function () {
       const params = new URLSearchParams({
         ad: data.ogrenciAd, kurs: data.kurs, deneme: data.denemeDersi
       });
       window.location.href = "tesekkurler.html?" + params.toString();
-    } catch (err) {
+    }).catch(function (err) {
       submitBtn.classList.remove("is-loading"); submitBtn.disabled = false;
       note.classList.add("error");
-      note.textContent = "Bir hata oluştu, lütfen tekrar deneyin veya WhatsApp üzerinden bize ulaşın.";
+      note.textContent = "Bir hata oluştu, lütfen tekrar deneyin.";
       console.error(err);
-    }
+    });
   });
 })();
