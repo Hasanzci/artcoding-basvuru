@@ -199,13 +199,68 @@
     body += row("KVKK", escapeHtml(a.kvkk));
     body += '</table><h4 style="margin-top:18px;">Beklentiler</h4><p>' + escapeHtml(a.beklenti || "-") + '</p>';
     body += '<h4>Cocuk hakkinda not</h4><p>' + escapeHtml(a.cocukNot || "-") + '</p>';
-    body += '<div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;">';
+    
+    // YENİ: Admin Notu
+    body += '<h4 style="margin-top:18px;">Yönetici Notu / İpucu</h4>';
+    body += '<textarea id="adminNoteInput" style="width:100%; min-height:80px; padding:10px; border:1px solid #cbd5e1; border-radius:6px; margin-bottom:10px; font-family:inherit; font-size: 0.95rem; resize: vertical;" placeholder="Veli/öğrenci hakkında notlarınızı veya son durumu buraya yazın...">' + escapeHtml(a.adminNotu || "") + '</textarea>';
+
+    body += '<div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">';
+    body += '<button id="saveNoteBtn" class="btn btn-primary" style="background-color: #10B981;">Notu Kaydet</button>';
+    body += '<button id="deleteAppBtn" class="btn btn-ghost" style="color: #EF4444; border: 1px solid #EF4444;">Kaydı Sil</button>';
+    body += '</div>';
+
+    body += '<div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap; border-top: 1px solid #e2e8f0; padding-top: 15px;">';
     body += '<a href="tel:' + escapeHtml(a.telefon) + '" class="btn btn-primary">Ara</a>';
     body += '<a href="mailto:' + escapeHtml(a.email) + '" class="btn btn-ghost">E-posta</a>';
     body += '<a href="https://wa.me/9' + (a.telefon || "").replace(/\D/g, '') + '" target="_blank" class="btn btn-ghost">WhatsApp</a>';
     body += '</div>';
     document.getElementById("detailBody").innerHTML = body;
     detailModal.hidden = false;
+
+    // Not kaydetme işlevi
+    document.getElementById("saveNoteBtn").addEventListener("click", function () {
+      var btn = this;
+      var note = document.getElementById("adminNoteInput").value;
+      btn.disabled = true;
+      btn.textContent = "Kaydediliyor...";
+      
+      api("update_note", { token: getToken(), id: a.id || a.tarih, adminNotu: note }).then(function (res) {
+        if (res.ok) {
+          a.adminNotu = note; // Yerel veriyi güncelle
+          btn.textContent = "Kaydedildi!";
+          btn.style.backgroundColor = "#059669";
+          setTimeout(function () { btn.textContent = "Notu Kaydet"; btn.disabled = false; btn.style.backgroundColor = "#10B981"; }, 2000);
+        } else {
+          alert("Not kaydedilemedi: " + (res.error || "Bilinmeyen hata"));
+          btn.textContent = "Notu Kaydet"; btn.disabled = false;
+        }
+      }).catch(function (err) {
+        alert("Bağlantı hatası: " + err.message);
+        btn.textContent = "Notu Kaydet"; btn.disabled = false;
+      });
+    });
+
+    // Kayıt silme işlevi
+    document.getElementById("deleteAppBtn").addEventListener("click", function () {
+      if (!confirm("Bu başvuruyu silmek istediğinize emin misiniz? Bu işlem geri alınamaz!")) return;
+      var btn = this;
+      btn.disabled = true;
+      btn.textContent = "Siliniyor...";
+      
+      api("delete", { token: getToken(), id: a.id || a.tarih }).then(function (res) {
+        if (res.ok) {
+          allApps = allApps.filter(function (app) { return (app.id || app.tarih) !== (a.id || a.tarih); });
+          renderAll(); // Tabloyu güncelle
+          detailModal.hidden = true; // Modalı kapat
+        } else {
+          alert("Kayıt silinemedi: " + (res.error || "Bilinmeyen hata"));
+          btn.textContent = "Kaydı Sil"; btn.disabled = false;
+        }
+      }).catch(function (err) {
+        alert("Bağlantı hatası: " + err.message);
+        btn.textContent = "Kaydı Sil"; btn.disabled = false;
+      });
+    });
   }
 
   function row(k, v) {

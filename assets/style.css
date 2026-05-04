@@ -128,7 +128,7 @@ p { margin: 0 0 1em; color: var(--c-muted); }
   border-radius: 24px; color: white; display: flex; justify-content: space-between;
   align-items: center; box-shadow: var(--shadow-md); z-index: 1; text-align: left;
 }
-.cta-box-content h3 { color: white; font-size: 1.6rem; margin-bottom: 20px; max-width: 400px; }
+.cta-box-content h3 { color: white; font-size: 1.6rem; line-height: 1.5; margin-bottom: 20px; max-width: 400px; }
 .cta-box-content .highlight {
   background: var(--c-pink); color: #fff; padding: 2px 8px; border-radius: 6px; white-space: nowrap;
 }
