@@ -109,7 +109,7 @@ p { margin: 0 0 1em; color: var(--c-muted); }
 
 /* ===== Hero ===== */
 .hero { padding: 70px 0 80px; }
-.hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: flex-start; }
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
   background: #fff; padding: 8px 16px; border-radius: 999px;
@@ -148,7 +148,7 @@ p { margin: 0 0 1em; color: var(--c-muted); }
 .hero-stats strong { font-family: var(--font-h); font-size: 1.7rem; color: var(--c-purple); }
 .hero-stats span { font-size: 0.85rem; color: var(--c-muted); }
 
-.hero-visual { display: flex; justify-content: center; }
+.hero-visual { display: flex; justify-content: center; margin-top: 10px; }
 .mascot-card {
   position: relative;
   width: 100%; max-width: 420px; aspect-ratio: 1;
@@ -168,7 +168,8 @@ p { margin: 0 0 1em; color: var(--c-muted); }
 @keyframes float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
 .speech {
   position: absolute; top: 14%; right: 8%;
-  background: var(--c-yellow); color: #1F1235;
+  background: #fff; color: #1F1235;
+  border: 2px solid var(--c-yellow);
   font-weight: 700; padding: 8px 16px;
   border-radius: 14px 14px 14px 4px;
   box-shadow: var(--shadow-sm);
