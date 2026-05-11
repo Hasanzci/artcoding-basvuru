@@ -62,6 +62,14 @@
     });
   }
 
+  // ---------- Course Images Background (for blurred effect) ----------
+  document.querySelectorAll(".course-image").forEach(container => {
+    const img = container.querySelector("img");
+    if (img && img.src) {
+      container.style.backgroundImage = `url('${img.getAttribute("src")}')`;
+    }
+  });
+
   // ---------- Course Modal ----------
   const courseModal = document.getElementById("courseModal");
   const courseClose = document.getElementById("courseClose");
@@ -83,6 +91,7 @@
 
         document.getElementById("modalImg").src = image;
         document.getElementById("modalImg").alt = title;
+        document.querySelector(".course-modal-img").style.backgroundImage = `url('${image}')`;
         document.getElementById("modalAge").textContent = age;
         document.getElementById("modalTitle").textContent = title;
         document.getElementById("modalDesc").textContent = desc;
@@ -92,7 +101,7 @@
         if (curriculum) {
           curriculum.split("|").forEach(item => {
             const li = document.createElement("li");
-            li.textContent = item;
+            li.innerHTML = `<span class="curriculum-icon"></span><span class="curriculum-text">${item}</span>`;
             ul.appendChild(li);
           });
         }
@@ -108,6 +117,46 @@
 
         courseModal.hidden = false;
       });
+    });
+  }
+
+  // ---------- Marquee & Lightbox ----------
+  const marqueeTrack = document.querySelector(".marquee-track");
+  if (marqueeTrack) {
+    marqueeTrack.addEventListener("mouseenter", () => {
+      marqueeTrack.getAnimations().forEach(anim => anim.playbackRate = 0.4);
+    });
+    marqueeTrack.addEventListener("mouseleave", () => {
+      marqueeTrack.getAnimations().forEach(anim => anim.playbackRate = 1);
+    });
+  }
+
+  const lightboxModal = document.getElementById("lightboxModal");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxClose = document.getElementById("lightboxClose");
+  
+  if (lightboxModal && lightboxImg) {
+    document.querySelectorAll(".marquee-track img").forEach(img => {
+      img.addEventListener("click", () => {
+        if (!img.src) return;
+        lightboxImg.src = img.src;
+        lightboxModal.style.backgroundImage = `url('${img.src}')`;
+        lightboxModal.hidden = false;
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    const closeLightbox = () => {
+      lightboxModal.hidden = true;
+      document.body.style.overflow = "";
+    };
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightboxModal.addEventListener("click", (e) => {
+      if (e.target === lightboxModal) closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !lightboxModal.hidden) closeLightbox();
     });
   }
 
