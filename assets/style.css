@@ -445,6 +445,31 @@ p { margin: 0 0 1em; color: var(--c-muted); }
   font-size: 0.85rem; color: #8A7BAD;
 }
 
+/* ===== Social Buttons ===== */
+.social-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: #000;
+  color: #fff !important;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+.social-btn:hover {
+  transform: translateY(-4px);
+  background-color: var(--c-purple-2);
+  box-shadow: 0 8px 24px rgba(124, 77, 255, 0.4);
+}
+
+
 /* ===== Modal ===== */
 .modal {
   position: fixed; inset: 0; z-index: 200;
