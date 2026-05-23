@@ -103,7 +103,7 @@
     const ad = p.get("ad"), kurs = p.get("kurs"), deneme = p.get("deneme");
     if (ad && kurs) {
       const t = document.getElementById("thanksMsg");
-      t.innerHTML = `<strong>${ad}</strong> için <strong>${kurs}</strong> kursuna başvurun alındı.${deneme === "Evet" ? " <strong>Ücretsiz deneme dersi</strong> talebiniz not edildi. " : " "} Eğitim koordinatörümüz <strong>24 saat içinde</strong> sizinle iletişime geçecek.`;
+      t.innerHTML = `<strong>${ad}</strong> için <strong>${kurs}</strong> kursuna başvurun alındı.${deneme === "Evet" ? " <strong>Ücretsiz deneme erişimi</strong> talebiniz not edildi. " : " "} Eğitim koordinatörümüz <strong>24 saat içinde</strong> sizinle iletişime geçecek.`;
     }
     // Konfeti
     const c = document.getElementById("confetti");
