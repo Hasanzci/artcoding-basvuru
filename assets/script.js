@@ -77,6 +77,55 @@
     courseClose.addEventListener("click", () => courseModal.hidden = true);
     courseModal.addEventListener("click", e => { if (e.target === courseModal) courseModal.hidden = true; });
 
+    // Half-toggle helpers
+    const halfToggleContainer = document.getElementById("halfToggleContainer");
+    const halfBtn1 = document.getElementById("halfBtn1");
+    const halfBtn2 = document.getElementById("halfBtn2");
+    const halfDetailBox = document.getElementById("halfDetailBox");
+    const halfDetailTitle = document.getElementById("halfDetailTitle");
+    const halfDetailDesc = document.getElementById("halfDetailDesc");
+    const halfDetailCurriculum = document.getElementById("halfDetailCurriculum");
+    let currentCardData = null;
+
+    function renderHalf(halfNum) {
+      if (!currentCardData) return;
+      const title = currentCardData[`half${halfNum}Title`];
+      const desc = currentCardData[`half${halfNum}Desc`];
+      const curriculum = currentCardData[`half${halfNum}Curriculum`];
+
+      halfDetailTitle.textContent = title || "";
+      halfDetailDesc.textContent = desc || "";
+      halfDetailCurriculum.innerHTML = "";
+
+      if (curriculum) {
+        curriculum.split("|").forEach(item => {
+          const li = document.createElement("li");
+          // Parse "Hafta X — Title: Description" format
+          const dashIdx = item.indexOf("—");
+          if (dashIdx > -1) {
+            const weekPart = item.substring(0, dashIdx).trim();
+            const rest = item.substring(dashIdx + 1).trim();
+            li.innerHTML = `<span class="week-num">${weekPart}</span><span class="week-content">${rest}</span>`;
+          } else {
+            li.innerHTML = `<span class="week-content">${item}</span>`;
+          }
+          halfDetailCurriculum.appendChild(li);
+        });
+      }
+
+      // Re-trigger animation
+      halfDetailBox.style.animation = "none";
+      halfDetailBox.offsetHeight; // force reflow
+      halfDetailBox.style.animation = "";
+
+      // Update active states
+      halfBtn1.classList.toggle("active", halfNum === 1);
+      halfBtn2.classList.toggle("active", halfNum === 2);
+    }
+
+    if (halfBtn1) halfBtn1.addEventListener("click", () => renderHalf(1));
+    if (halfBtn2) halfBtn2.addEventListener("click", () => renderHalf(2));
+
     document.querySelectorAll(".btn-details").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const card = e.target.closest(".course-card");
@@ -88,6 +137,7 @@
         const desc = card.dataset.desc;
         const curriculum = card.dataset.curriculum;
         const value = card.dataset.value;
+        const hasHalves = card.dataset.hasHalves === "true";
 
         document.getElementById("modalImg").src = image;
         document.getElementById("modalImg").alt = title;
@@ -104,6 +154,23 @@
             li.innerHTML = `<span class="curriculum-icon"></span><span class="curriculum-text">${item}</span>`;
             ul.appendChild(li);
           });
+        }
+
+        // Handle half-toggle for Arduino & Raspberry Pi
+        if (hasHalves && halfToggleContainer) {
+          currentCardData = {
+            half1Title: card.dataset.half1Title,
+            half1Desc: card.dataset.half1Desc,
+            half1Curriculum: card.dataset.half1Curriculum,
+            half2Title: card.dataset.half2Title,
+            half2Desc: card.dataset.half2Desc,
+            half2Curriculum: card.dataset.half2Curriculum,
+          };
+          halfToggleContainer.style.display = "block";
+          renderHalf(1); // Show first half by default
+        } else {
+          halfToggleContainer.style.display = "none";
+          currentCardData = null;
         }
 
         const applyBtn = document.getElementById("modalApplyBtn");
