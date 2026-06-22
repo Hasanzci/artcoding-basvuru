@@ -89,14 +89,12 @@
 
     function renderHalf(halfNum) {
       if (!currentCardData) return;
-      const title = currentCardData[`half${halfNum}Title`];
-      const desc = currentCardData[`half${halfNum}Desc`];
-      const curriculum = currentCardData[`half${halfNum}Curriculum`];
+      const isHalf2 = halfNum === 2;
+      halfDetailTitle.textContent = isHalf2 ? currentCardData.half2Title : currentCardData.half1Title;
+      halfDetailDesc.innerHTML = isHalf2 ? currentCardData.half2Desc : currentCardData.half1Desc;
 
-      halfDetailTitle.textContent = title || "";
-      halfDetailDesc.textContent = desc || "";
       halfDetailCurriculum.innerHTML = "";
-
+      const curriculum = isHalf2 ? currentCardData.half2Curriculum : currentCardData.half1Curriculum;
       if (curriculum) {
         curriculum.split("|").forEach(item => {
           const li = document.createElement("li");
@@ -119,12 +117,25 @@
       halfDetailBox.style.animation = "";
 
       // Update active states
-      halfBtn1.classList.toggle("active", halfNum === 1);
-      halfBtn2.classList.toggle("active", halfNum === 2);
+      halfBtn1.classList.toggle("active", !isHalf2);
+      halfBtn2.classList.toggle("active", isHalf2);
+      
+      // Hacker mode for Raspberry Pi
+      document.body.classList.toggle("hacker-mode", isHalf2);
     }
 
     if (halfBtn1) halfBtn1.addEventListener("click", () => renderHalf(1));
     if (halfBtn2) halfBtn2.addEventListener("click", () => renderHalf(2));
+
+    const closeModal = () => {
+      courseModal.hidden = true;
+      document.body.classList.remove("hacker-mode");
+    };
+
+    if (courseClose) courseClose.addEventListener("click", closeModal);
+    courseModal.addEventListener("click", (e) => {
+      if (e.target === courseModal) closeModal();
+    });
 
     document.querySelectorAll(".btn-details").forEach(btn => {
       btn.addEventListener("click", (e) => {
