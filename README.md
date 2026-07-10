@@ -1,6 +1,6 @@
 # 🎨 ArtCoding Online — Başvuru Sistemi
 
-ArtCoding Online'ın **Haziran 2026** dönem kayıtları için profesyonel başvuru sayfası, admin paneli ve Google Sheets entegrasyonu.
+ArtCoding Online'ın **Temmuz 2026** dönem kayıtları için profesyonel başvuru sayfası, admin paneli ve Google Sheets entegrasyonu.
 
 ![status](https://img.shields.io/badge/durum-üretime_hazır-2ea44f) ![host](https://img.shields.io/badge/host-GitHub_Pages-blue) ![backend](https://img.shields.io/badge/backend-Google_Apps_Script-yellow)
 

@@ -18,7 +18,7 @@ const CONFIG = {
   NOTIFY_EMAIL: "izcihasan695@gmail.com",
 
   // Konu satırına eklenecek dönem etiketi
-  SEASON_LABEL: "Haziran 2026",
+  SEASON_LABEL: "Temmuz 2026",
 
   // Admin kullanıcı adı (Apps Script gizli, dışarı sızmaz)
   ADMIN_USERNAME: "elyanaatreus",

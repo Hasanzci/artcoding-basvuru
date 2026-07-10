@@ -31,7 +31,7 @@ Bu dosyayı baştan sona takip edersen yaklaşık **15 dakikada** sistem ayakta 
 const CONFIG = {
   SHEET_NAME: "Başvurular",
   NOTIFY_EMAIL: "izcihasan695@gmail.com",   // ← bildirim e-postanız
-  SEASON_LABEL: "Haziran 2026",
+  SEASON_LABEL: "Temmuz 2026",
   ADMIN_API_KEY: "DEGISTIR-buraya-uzun-rastgele-bir-anahtar-yapistir-2026"
   //               ↑ Bunu mutlaka değiştir!
 };

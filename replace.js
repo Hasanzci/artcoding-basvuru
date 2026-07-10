@@ -18,7 +18,7 @@ for (const file of filesToProcess) {
 
   // Courses section
   content = content.replace(/id="kurslar"/g, 'id="icerikler"');
-  content = content.replace(/Haziran döneminde açılan kurslar/g, 'Haziran döneminde sunulan dijital içerikler');
+  content = content.replace(/Temmuz döneminde açılan kurslar/g, 'Temmuz döneminde sunulan dijital içerikler');
   content = content.replace(/proje tabanlı dersler/g, 'proje tabanlı uygulamalar');
   content = content.replace(/Öğrenci Kursu/g, 'Öğrenci İçeriği');
   content = content.replace(/LGS Matematik \(Birebir Özel Ders\)/g, 'LGS Matematik (Özel İçerik Modülü)');
