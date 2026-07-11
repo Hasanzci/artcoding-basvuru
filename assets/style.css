@@ -145,6 +145,67 @@ p {
   }
 }
 
+/* ===== Announcement Banner ===== */
+.top-announcement {
+  background: linear-gradient(90deg, #F97316 0%, #F59E0B 100%); /* Orange gradient matching the image */
+  color: #fff;
+  padding: 12px 0;
+  font-size: 0.98rem;
+  position: relative;
+  z-index: 101;
+  box-shadow: var(--shadow-sm);
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.announcement-content p {
+  margin: 0;
+  color: #fff;
+  font-weight: 500;
+}
+
+.announcement-content strong {
+  font-weight: 800;
+  font-family: var(--font-h);
+}
+
+.announcement-badge {
+  background: #0F766E; /* Teal color from image */
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  animation: pulse 2s infinite;
+}
+
+.announcement-link {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: opacity 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.announcement-link:hover {
+  color: #fff;
+  opacity: 0.8;
+}
+
 /* ===== Header / Nav ===== */
 .site-header {
   position: sticky;
