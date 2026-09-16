@@ -6,26 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yönetici Paneli • ArtCoding</title>
   <meta name="robots" content="noindex,nofollow" />
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/style.css?v=2026" />
 </head>
 
 <body class="admin-page">
 
-  <div class="top-announcement">
-    <div class="container announcement-content">
-      <span class="announcement-badge">%35 İNDİRİM</span>
-      <p><strong>Geleceğe İlk Adımı Birlikte Atalım!</strong> 30 Temmuz'a kadar kayıt olan ailelere %35 Erken Kayıt Avantajı</p>
-      <a href="/#basvuru" class="announcement-link">Detaylı Bilgi <span aria-hidden="true">&rarr;</span></a>
-    </div>
-  </div>
-
   <!-- ========== Login ========== -->
   <section id="loginScreen" class="login-screen">
     <form id="loginForm" class="login-card" autocomplete="off">
-      <img src="assets/logo.svg" alt="ArtCoding" class="brand-logo" />
+      <img src="assets/img/logo-full.webp" alt="ArtCoding" class="brand-logo" />
       <h2>Yönetici Girişi</h2>
       <p>Başvuruları görmek için giriş yapın.</p>
       <div class="field">
@@ -46,7 +37,7 @@
   <div id="dashboard" class="admin-shell" hidden>
     <header class="admin-topbar">
       <a href="/" class="brand">
-        <img src="assets/logo.svg" alt="" class="brand-logo" />
+        <img src="assets/img/logo-mark.webp" alt="" class="brand-logo" />
         <span class="brand-text"><span class="brand-art">Art</span><span class="brand-coding">Coding</span> ·
           Yönetici</span>
       </a>
@@ -59,7 +50,7 @@
 
     <main class="admin-main">
 
-      <h2 style="margin-bottom: 22px;">Temmuz 2026 Başvuruları</h2>
+      <div class="admin-title"><h2>Başvurular</h2><span>2026–2027 dönemi</span></div>
 
       <div class="dashboard-stats" id="statsBar">
         <div class="stat-card"><span class="stat-num" id="statTotal">—</span><span class="stat-label">Toplam
@@ -97,7 +88,7 @@
   <!-- ========== Detay modal ========== -->
   <div class="modal" id="detailModal" hidden>
     <div class="modal-card" style="max-width: 640px;">
-      <button class="modal-close" id="detailClose">×</button>
+      <button class="modal-close" id="detailClose" aria-label="Kapat">×</button>
       <h3 id="detailTitle">Başvuru Detayı</h3>
       <div id="detailBody"></div>
     </div>
