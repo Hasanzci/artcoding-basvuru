@@ -50,7 +50,7 @@
         btn.classList.add("active");
         const filter = btn.dataset.filter;
         courseCards.forEach(card => {
-          if (filter === "all" || card.dataset.category === filter) {
+          if (filter === "all" || card.dataset.category === filter || card.classList.contains("course-card--help")) {
             card.style.display = "flex";
             setTimeout(() => card.classList.add("active"), 10);
           } else {
